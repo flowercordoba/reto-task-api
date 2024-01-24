@@ -17,7 +17,7 @@ class AuthRoutes {
   private initializeRoutes() {
     this.router.post('/auth/register', new RegisterController(this.authService).Register);
     this.router.post('/auth/login', new LoginController(this.authService).Login); // Asume que LoginController tiene una estructura similar
-    this.router.get('/auth/signout', new SignOut().update); // Asume que SignOut no necesita AuthService
+    this.router.get('/auth/signout', new SignOut().update); 
   }
 }
 
