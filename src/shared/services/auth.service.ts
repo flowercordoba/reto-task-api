@@ -6,12 +6,11 @@ import { RegisterUserDto, UserEntity } from '@domain/index';
 import { CustomError } from '../utils/error-handler';
 import { bcryptAdapter } from '../utils';
 import { JwtAdapter } from '@middleware/jwt.adapter';
-
-// import { IAuthDocument } from '@auth/interfaces/auth.interface';
+import { LoginUserDto } from '@domain/index';
 
 export class AuthService {
   constructor() {}
-  public async createAuthUser(registerDto: RegisterUserDto): Promise<any> {
+  public async createAuthUser(registerDto: RegisterUserDto) {
     // Buscar si ya existe un usuario con el mismo email
     const userExist = await UserModel.findOne({ email: registerDto.email });
 
@@ -36,10 +35,27 @@ export class AuthService {
       throw CustomError.internalServer(`${error}`);
     }
   }
-  public async getUserByUsernameOrEmail(): Promise<any> {
-    const datat = ['email', 'user'];
+  public async getUserByUsernameOrEmail(loginUserDto: LoginUserDto) {
+    const user = await UserModel.findOne({ email: loginUserDto.email });
+    if (!user) {
+      throw CustomError.badRequest('Email not exist');
+    }
+    const isMatching = bcryptAdapter.compare(loginUserDto.password, user.password);
+    if (!isMatching) {
+      throw CustomError.badRequest('Password is not valid');
+    }
 
-    console.log('register services', datat);
+    const { password, ...userEntity } = UserEntity.fromObject(user);
+
+    const token = await JwtAdapter.generateToken({ id: user.id });
+    if (!token) {
+      throw CustomError.internalServer('Error while creating JWT');
+    }
+
+    return {
+      user: userEntity,
+      token: token
+    };
   }
 
   public async getAuthUserByUsername(): Promise<any> {
