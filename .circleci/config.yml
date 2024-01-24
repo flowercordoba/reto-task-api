@@ -223,6 +223,44 @@ jobs:
               ]
             }
 
+# workflows:
+#   build_and_deploy:
+#     jobs:
+#       - build
+#       - linting:
+#           requires:
+#             - build
+#           filters:
+#             branches:
+#                only:
+#                 - develop
+#                 - staging
+#                 - main
+#       - code-formatter-check:
+#           requires:
+#             - linting
+#           filters:
+#             branches:
+#                only:
+#                 - develop
+#                 - staging
+#                 - main
+#       # - unit-test:
+#       #     requires:
+#       #       - code-formatter-check
+#       #     filters:
+#       #       branches:
+#       #          only:
+#       #           - develop
+#       #           - staging
+#       #           - main
+
+
+     
+#       # - hold:
+#       #     type: approval
+#       #     requires:
+#       #       - notify-via-slack
 workflows:
   build_and_deploy:
     jobs:
@@ -245,19 +283,21 @@ workflows:
                 - develop
                 - staging
                 - main
-      # - unit-test:
-      #     requires:
-      #       - code-formatter-check
-      #     filters:
-      #       branches:
-      #          only:
-      #           - develop
-      #           - staging
-      #           - main
-
-
-     
-      # - hold:
-      #     type: approval
-      #     requires:
-      #       - notify-via-slack
+      - unit-test:
+          requires:
+            - code-formatter-check
+          filters:
+            branches:
+               only:
+                - develop
+                - staging
+                - main
+      - notify-via-slack:
+          requires:
+            - unit-test
+          filters:
+            branches:
+               only:
+                - develop
+                - staging
+                - main
