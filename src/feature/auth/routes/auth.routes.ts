@@ -1,28 +1,24 @@
-// import { LoginController } from '@auth/controllers/signin';
-import { SignOut } from '@auth/controllers/signout';
-// import { RegisterController } from '@auth/controllers/signup';
-import { LoginController } from '@auth/controllers/signin';
+import { Router } from 'express';
 import { RegisterController } from '@auth/controllers/signup';
-import express, { Router } from 'express';
+import { LoginController } from '@auth/controllers/signin';
+import { SignOut } from '@auth/controllers/signout';
+import { AuthService } from '@service/auth.service'; // Asegúrate de que la ruta de importación sea correcta.
 
 class AuthRoutes {
-  private router: Router;
+  public router: Router;
+  private authService: AuthService;
 
   constructor() {
-    this.router = express.Router();
+    this.router = Router();
+    this.authService = new AuthService();
+    this.initializeRoutes();
   }
 
-  public routes(): Router {
-    this.router.post('/auth/register', new RegisterController().Register);
-    this.router.post('/auth/login', new LoginController().Login);
-    return this.router;
-  }
-
-  public signoutRoute(): Router {
-    this.router.get('/signout', SignOut.prototype.update);
-
-    return this.router;
+  private initializeRoutes() {
+    this.router.post('/auth/register', new RegisterController(this.authService).Register);
+    this.router.post('/auth/login', new LoginController().Login); // Asume que LoginController tiene una estructura similar
+    this.router.get('/auth/signout', new SignOut().update); // Asume que SignOut no necesita AuthService
   }
 }
 
-export const authRoutes: AuthRoutes = new AuthRoutes();
+export const authRoutes = new AuthRoutes().router; // Exporta directamente el router configurado

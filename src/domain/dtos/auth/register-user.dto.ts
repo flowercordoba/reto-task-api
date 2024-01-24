@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { regularExps } from '@helpers/utils';
+import { regularExps } from '@root/shared/utils/regular-exp';
 
 export class RegisterUserDto {
   private constructor(

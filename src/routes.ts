@@ -12,8 +12,7 @@ const BASE_PATH = '/api';
 
 export default (app: Application) => {
   const routes = () => {
-    app.use(BASE_PATH, authRoutes.routes());
-    app.use(BASE_PATH, authRoutes.signoutRoute());
+    app.use(BASE_PATH, authRoutes);
     app.use(BASE_PATH, authMiddleware.verifyUser, currentUserRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, userRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, notificacionRoutes.routes());

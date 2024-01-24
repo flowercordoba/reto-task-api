@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Validators } from '../../../shared';
+
+import { Validators } from '@validator/validators';
 
 export class TaskDto {
   private constructor(
