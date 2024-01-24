@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "lib": ["DOM", "ES2015"],
+    "baseUrl": ".",
+    "outDir": "./build",
+  
+    "rootDir": ".",
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "pretty": true,
+    "resolveJsonModule": true,
+    "plugins": [
+      { "transform": "typescript-transform-paths" },
+      { "transform": "typescript-transform-paths", "afterDeclarations": true },
+    ],
+    "paths": {
+      "@auth/*": ["src/feature/auth/*"],
+      "@user/*": ["src/feature/user/*"],
+      "@task/*": ["src/feature/task/*"],
+      "@helpers/*": ["src/shared/helpers/*"],
+      "@service/*": ["src/shared/services/*"],
+      "@notification/*": ["src/feature/notification/*"],
+      "@interfaces/*": ["src/shared/interfaces/*"],
+      "@middleware/*": ["src/shared/middlewares/*"],
+      "@validator/*": ["src/shared/validators/*"],
+      "@domain/*": ["src/domain/*"],
+      "@data/*": ["src/data/*"],
+
+      "@root/*": ["src/*"]
+    }
+  }
+}
