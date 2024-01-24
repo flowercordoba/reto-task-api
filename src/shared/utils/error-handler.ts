@@ -1,85 +1,26 @@
-import HTTP_STATUS from 'http-status-codes';
-
-export interface IErrorResponse {
-  message: string;
-  statusCode: number;
-  status: string;
-  serializeErrors(): IError;
-}
-
-export interface IError {
-  message: string;
-  statusCode: number;
-  status: string;
-}
-
-export abstract class CustomError extends Error {
-  abstract statusCode: number;
-  abstract status: string;
-
-  constructor(message: string) {
+export class CustomError extends Error {
+  constructor(
+    public readonly statusCode: number,
+    public readonly message: string
+  ) {
     super(message);
   }
 
-  serializeErrors(): IError {
-    return {
-      message: this.message,
-      status: this.status,
-      statusCode: this.statusCode
-    };
+  static badRequest(message: string) {
+    return new CustomError(400, message);
   }
-}
 
-export class JoiRequestValidationError extends CustomError {
-  statusCode = HTTP_STATUS.BAD_REQUEST;
-  status = 'error';
-
-  constructor(message: string) {
-    super(message);
+  static unaUtherized(message: string) {
+    return new CustomError(401, message);
   }
-}
-
-export class BadRequestError extends CustomError {
-  statusCode = HTTP_STATUS.BAD_REQUEST;
-  status = 'error';
-
-  constructor(message: string) {
-    super(message);
+  static forbidden(message: string) {
+    return new CustomError(403, message);
   }
-}
 
-export class NotFoundError extends CustomError {
-  statusCode = HTTP_STATUS.NOT_FOUND;
-  status = 'error';
-
-  constructor(message: string) {
-    super(message);
+  static notFound(message: string) {
+    return new CustomError(404, message);
   }
-}
-
-export class NotAuthorizedError extends CustomError {
-  statusCode = HTTP_STATUS.UNAUTHORIZED;
-  status = 'error';
-
-  constructor(message: string) {
-    super(message);
-  }
-}
-
-export class FileTooLargeError extends CustomError {
-  statusCode = HTTP_STATUS.REQUEST_TOO_LONG;
-  status = 'error';
-
-  constructor(message: string) {
-    super(message);
-  }
-}
-
-export class ServerError extends CustomError {
-  statusCode = HTTP_STATUS.SERVICE_UNAVAILABLE;
-  status = 'error';
-
-  constructor(message: string) {
-    super(message);
+  static internalServer(message: string) {
+    return new CustomError(500, message);
   }
 }

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import 'express-async-errors';
 import http from 'http';
 
 import { Application, json, urlencoded } from 'express';
