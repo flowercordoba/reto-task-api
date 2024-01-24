@@ -5,10 +5,8 @@ import { Application, json, urlencoded } from 'express';
 import cors from 'cors';
 import applicationRoutes from '@root/routes';
 
-
 const SERVER_PORT = 5000;
-const link =['http://localhost:4200','https://demo-task-flower.netlify.app'];
-
+const link = ['http://localhost:4200', 'https://demo-task-flower.netlify.app'];
 
 export class TastServer {
   private app: Application;
@@ -25,16 +23,17 @@ export class TastServer {
     this.startServer(this.app);
   }
   private securityMiddleware(app: Application): void {
-    app.use(cors({
-      origin: link,
-      // origin: true,
-      credentials: true,
-      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-    }));
+    app.use(
+      cors({
+        origin: link,
+        // origin: true,
+        credentials: true,
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+      })
+    );
   }
 
   private standardMiddleware(app: Application): void {
-  
     app.use(json({ limit: '200mb' }));
     app.use(urlencoded({ extended: true, limit: '200mb' }));
   }
@@ -56,8 +55,7 @@ export class TastServer {
         console.info(`Server server running on port ${SERVER_PORT}`);
       });
     } catch (error) {
-        console.log('error', 'Task startServer() error method:', error);
+      console.log('error', 'Task startServer() error method:', error);
     }
   }
-
 }

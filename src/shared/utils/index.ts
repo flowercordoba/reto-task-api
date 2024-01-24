@@ -1,4 +1,3 @@
-
 export {
   IErrorResponse,
   IError,
@@ -7,13 +6,6 @@ export {
   NotFoundError,
   NotAuthorizedError,
   FileTooLargeError,
-  ServerError,
-  
+  ServerError
 } from './error-handler';
-export {
-  firstLetterUppercase,
-  lowerCase,
-  toUpperCase,
-  isEmail,
-  isDataURL
-} from './helpers';
+export { firstLetterUppercase, lowerCase, toUpperCase, isEmail, isDataURL } from './helpers';

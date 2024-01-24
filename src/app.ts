@@ -1,4 +1,3 @@
-
 import express, { Express } from 'express';
 import { TastServer } from './server';
 
@@ -7,7 +6,6 @@ class Application {
     const app: Express = express();
     const server: TastServer = new TastServer(app);
     server.start();
-
   }
 }
 

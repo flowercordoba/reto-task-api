@@ -7,9 +7,8 @@ import { Request, Response } from 'express';
 export class CurrentController {
   // @joiValidation(signupSchema)
 
-  getProfile = async(req: Request, res: Response) => {
-    const getProfile =await authService.getUserById();
-    res.json({ok:true,getProfile});
-
+  getProfile = async (req: Request, res: Response) => {
+    const getProfile = await authService.getUserById();
+    res.json({ ok: true, getProfile });
   };
 }

@@ -10,7 +10,7 @@ import { notificacionRoutes } from './feature/notificacion/routes/notification.r
 
 const BASE_PATH = '/api';
 
-export default  (app: Application) => {
+export default (app: Application) => {
   const routes = () => {
     app.use(BASE_PATH, authRoutes.routes());
     app.use(BASE_PATH, authRoutes.signoutRoute());
@@ -18,10 +18,6 @@ export default  (app: Application) => {
     app.use(BASE_PATH, authMiddleware.verifyUser, userRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, notificacionRoutes.routes());
     app.use(BASE_PATH, authMiddleware.verifyUser, taskRoutes.routes());
-
-    
-    
   };
   routes();
 };
-

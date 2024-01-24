@@ -5,15 +5,12 @@ import { Request, Response } from 'express';
 export class TaskController {
   // @joiValidation(signupSchema)
 
-
-  createTask = async(req: Request, res: Response) => {
-    const createTask =await taskService.createTask();
-    res.json({ok:true,createTask});
-
+  createTask = async (req: Request, res: Response) => {
+    const createTask = await taskService.createTask();
+    res.json({ ok: true, createTask });
   };
-  sendTask = async(req: Request, res: Response) => {
-    const sendTask =await taskService.asignarTask();
-    res.json({ok:true,sendTask});
-
+  sendTask = async (req: Request, res: Response) => {
+    const sendTask = await taskService.asignarTask();
+    res.json({ ok: true, sendTask });
   };
 }

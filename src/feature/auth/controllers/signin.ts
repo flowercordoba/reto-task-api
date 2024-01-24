@@ -8,10 +8,8 @@ import { Request, Response } from 'express';
 export class LoginController {
   // @joiValidation(signupSchema)
 
-  Login = async(req: Request, res: Response) => {
-    const checkIfUserExist =await authService.getAuthUserByUsername();
-    res.json({ok:true,checkIfUserExist});
-
-
+  Login = async (req: Request, res: Response) => {
+    const checkIfUserExist = await authService.getAuthUserByUsername();
+    res.json({ ok: true, checkIfUserExist });
   };
 }

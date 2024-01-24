@@ -1,4 +1,3 @@
-
 import { TaskController } from '@task/controllers/create-task';
 import { TaskGetController } from '@task/controllers/get-task';
 import { TaskUpdateController } from '@task/controllers/update-task';
@@ -19,11 +18,8 @@ class TaskRoutes {
     this.router.put('/task-update', new TaskUpdateController().updateTask);
     this.router.delete('/task-update', new TaskUpdateController().deleteTask);
 
-
     return this.router;
   }
-
-  
 }
 
 export const taskRoutes: TaskRoutes = new TaskRoutes();

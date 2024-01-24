@@ -3,31 +3,24 @@
 
 // import { IAuthDocument } from '@auth/interfaces/auth.interface';
 
-
-
-
-
 class AuthService {
   public async createAuthUser(): Promise<void> {
-    const datat = ['email','user'];
+    const datat = ['email', 'user'];
     console.log('createAuthUser');
     // await AuthModel.create(data);
   }
 
-
   public async getUserByUsernameOrEmail(): Promise<any> {
-    const datat = ['email','user'];
-    
-    console.log('register services',datat);
+    const datat = ['email', 'user'];
 
+    console.log('register services', datat);
   }
 
   public async getAuthUserByUsername(): Promise<any> {
     const datat = ['user'];
- 
-    console.log('login',datat);
 
-    
+    console.log('login', datat);
+
     // const user: IAuthDocument = (await AuthModel.findOne({ username: Helpers.firstLetterUppercase(username) }).exec()) as IAuthDocument;
     // return user;
   }
@@ -40,8 +33,7 @@ class AuthService {
   }
   public async getUserById(): Promise<any> {
     console.log('profile user');
- 
-}
+  }
 }
 
 export const authService: AuthService = new AuthService();

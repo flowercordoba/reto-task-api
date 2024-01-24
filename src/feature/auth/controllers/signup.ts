@@ -7,10 +7,9 @@ import { Request, Response } from 'express';
 export class RegisterController {
   // @joiValidation(signupSchema)
 
-  Register = async(req: Request, res: Response) => {
+  Register = async (req: Request, res: Response) => {
     // res.send('hola');
-    const checkIfUserExistregister =await authService.getUserByUsernameOrEmail();
-    res.json({ok:true,checkIfUserExistregister});
-
+    const checkIfUserExistregister = await authService.getUserByUsernameOrEmail();
+    res.json({ ok: true, checkIfUserExistregister });
   };
 }

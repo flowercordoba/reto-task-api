@@ -1,4 +1,3 @@
-
 import { CurrentController } from '@auth/controllers/current-user';
 import express, { Router } from 'express';
 

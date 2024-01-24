@@ -5,42 +5,36 @@ import { notificacionService } from './notification.service';
 
 class TaskService {
   public async createTask(): Promise<void> {
-    const datat = ['email','user'];
+    const datat = ['email', 'user'];
     console.log('createAuthUser');
-    
   }
   public async getTaskById(): Promise<any> {
     const datat = ['task1'];
-    
-    console.log('getTaskById',datat);
 
+    console.log('getTaskById', datat);
   }
 
   public async getTask(): Promise<any> {
-    const datat = ['task1','tarea2 ....'];
-    
-    console.log('getTask',datat);
+    const datat = ['task1', 'tarea2 ....'];
 
+    console.log('getTask', datat);
   }
 
   public async getTaskUpdate(): Promise<any> {
-    const datat = ['task1','tarea2 ....'];
-    
-    console.log('getTaskUpdate',datat);
+    const datat = ['task1', 'tarea2 ....'];
 
+    console.log('getTaskUpdate', datat);
   }
 
   public async getTaskDelete(): Promise<any> {
-    const datat = ['task1','....tarea2 ....'];
-    
-    console.log('getTaskDelete',datat);
+    const datat = ['task1', '....tarea2 ....'];
 
+    console.log('getTaskDelete', datat);
   }
   public async asignarTask(): Promise<any> {
-    const datat = ['task1','....tarea2 ....>>'];
+    const datat = ['task1', '....tarea2 ....>>'];
     const sendNoti = notificacionService.createNotificacion();
-    console.log('getTaskSignar',datat,sendNoti);
-
+    console.log('getTaskSignar', datat, sendNoti);
   }
 }
 

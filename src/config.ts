@@ -9,10 +9,10 @@ export class Config {
   public SECRET_KEY_ONE: string | undefined;
   public SECRET_KEY_TWO: string | undefined;
   public CLIENT_URL: string | undefined;
- 
+
   public PORT: string | number;
   public DISCORD_WEBHOOK_URL: string;
-  public WEBSERVICE_URL: string ;
+  public WEBSERVICE_URL: string;
 
   private readonly DEFAULT_DATABASE_URL = 'mongodb://localhost:27017/task-backend';
 
@@ -28,8 +28,6 @@ export class Config {
     this.PORT = process.env.PORT || '';
   }
 
-
-
   public validateConfig(): void {
     for (const [key, value] of Object.entries(this)) {
       if (value === undefined) {
@@ -37,7 +35,6 @@ export class Config {
       }
     }
   }
-
 }
 
 export const config: Config = new Config();

@@ -1,4 +1,3 @@
-
 // import { LoginController } from '@auth/controllers/signin';
 import { SignOut } from '@auth/controllers/signout';
 // import { RegisterController } from '@auth/controllers/signup';
@@ -14,7 +13,6 @@ class AuthRoutes {
   }
 
   public routes(): Router {
-  
     this.router.post('/auth/register', new RegisterController().Register);
     this.router.post('/auth/login', new LoginController().Login);
     return this.router;

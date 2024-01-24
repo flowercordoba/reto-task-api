@@ -35,7 +35,6 @@ export interface IAuthDocument {
   hashPassword(password: string): Promise<string>;
 }
 
-
 export interface ISignUpPayload {
   [key: string]: string;
   name: string;
@@ -49,7 +48,6 @@ export interface ISignInPayload {
   name: string;
   password: string;
 }
-
 
 export interface IReduxAuthPayload {
   authInfo?: IAuthDocument;

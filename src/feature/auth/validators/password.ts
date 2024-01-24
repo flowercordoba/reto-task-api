@@ -21,6 +21,4 @@ const passwordSchema: ObjectSchema = Joi.object().keys({
   })
 });
 
-
-
 export { emailSchema, passwordSchema };
