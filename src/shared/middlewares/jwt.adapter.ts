@@ -8,6 +8,10 @@ const JWT_TOKEN = config.JWT_TOKEN;
  * JwtAdapter es una clase que proporciona métodos estáticos para generar y validar tokens JWT.
  */
 export class JwtAdapter {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static verifyToken(token: string) {
+    throw new Error('Method not implemented.');
+  }
   /**
    * Genera un token JWT basado en un payload y un período de validez.
    *

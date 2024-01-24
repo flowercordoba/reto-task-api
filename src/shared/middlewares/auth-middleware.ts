@@ -10,9 +10,6 @@ declare module 'express' {
   }
 }
 
-/**
- * AuthMiddleware contiene métodos para manejar la autenticación en la aplicación.
- */
 export class AuthMiddleware {
   /**
    * Valida el token JWT presente en la solicitud.
@@ -32,7 +29,7 @@ export class AuthMiddleware {
     }
 
     // Extrae el token de la cabecera de autorización
-    const token = authorization.split(' ')[1] || '';
+    const token = authorization.split(' ').at(1) || '';
 
     try {
       // Valida el token y extrae el payload
@@ -42,25 +39,24 @@ export class AuthMiddleware {
       }
 
       // Busca el usuario asociado al token
-      const user = await UserModel.findById(payload.id).exec();
+      const user = await UserModel.findById(payload.id);
+      // const user = await UserModel.findById(payload.id).exec();
       if (!user) {
         return res.status(401).json({ error: 'Invalid token - user not found' });
       }
 
-      // Asegúrate de que el usuario tenga un token que coincida con el enviado
-      // Esta comprobación solo es necesaria si almacenas los tokens JWT en el modelo de usuario.
-      // Si no almacenas el token en el modelo del usuario, puedes quitar esta comprobación.
       if (user.token && user.token !== token) {
         return res.status(401).json({ error: 'Invalid token - token does not match' });
       }
+    
 
-      // Convierte el usuario a un objeto de dominio y lo añade a la solicitud
-      req.user = UserEntity.fromObject(user);
+      req.body.user = UserEntity.fromObject(user);
 
       // Continúa con el siguiente middleware en la cadena
       next();
     } catch (error) {
       console.error(error);
+      res.status(500).json({error:'Interna server Error'});
     }
   }
 }

@@ -70,10 +70,20 @@ export class AuthService {
   public async getAuthUserByEmail(): Promise<any> {
     console.log('getAuthUserByEmail');
 
-    // const user: IAuthDocument = (await AuthModel.findOne({ email: Helpers.lowerCase(email) }).exec()) as IAuthDocument;
-    // return user;
+
   }
-  public async getUserById(): Promise<any> {
-    console.log('profile user');
+  public async getUserById(id: string): Promise<any> {
+    try {
+      const user = await UserModel.findById(id);
+      if (!user) {
+        throw CustomError.badRequest('User not found');
+      }
+
+      const { password, ...userEntity } = UserEntity.fromObject(user);
+
+      return userEntity;
+    } catch (error) {
+      throw CustomError.internalServer(`${error}`);
+    }
   }
 }
