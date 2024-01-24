@@ -1,9 +1,7 @@
-
 import { CustomError } from '@root/shared/utils';
 import { taskService } from '@service/task.service';
 import { Request, Response } from 'express';
 export class TaskUpdateController {
-
   private handleError = (error: unknown, res: Response) => {
     if (error instanceof CustomError) {
       return res.status(error.statusCode).json({ error: error.message });

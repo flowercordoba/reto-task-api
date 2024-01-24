@@ -6,6 +6,7 @@ import { taskRoutes } from '@task/routes/task.routes';
 import { Application } from 'express';
 import { notificacionRoutes } from './feature/notificacion/routes/notification.routes';
 import { AuthMiddleware } from '@middleware/auth-middleware';
+import { userRoutes } from '@user/routes/userRoutes';
 
 const BASE_PATH = '/api';
 
@@ -15,6 +16,7 @@ export default (app: Application) => {
     app.use(BASE_PATH, AuthMiddleware.validateJWT, currentUserRoutes.routes());
     app.use(BASE_PATH, AuthMiddleware.validateJWT, notificacionRoutes.routes());
     app.use(BASE_PATH, AuthMiddleware.validateJWT, taskRoutes.routes());
+    app.use(BASE_PATH, AuthMiddleware.validateJWT, userRoutes.routes());
   };
   routes();
 };

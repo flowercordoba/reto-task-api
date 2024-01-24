@@ -15,7 +15,6 @@ class TaskRoutes {
 
   public routes(): Router {
     this.router.post('/create-task', new TaskController(this.taskServices).create);
-    // this.router.post('/send-task/:id/user/:id', new TaskController(this.taskServices).sendTask);
     this.router.get('/task', new TaskController(this.taskServices).getTasks);
     this.router.get('/task/:id', new TaskController(this.taskServices).getTaskById);
     this.router.put('/task/:id', new TaskController(this.taskServices).edit);

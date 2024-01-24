@@ -1,14 +1,11 @@
-import { IAuth } from '@auth/interfaces/auth.interface';
+import { IAuth } from '@task/interfaces/task.interface';
 import mongoose, { Schema } from 'mongoose';
-import validator from 'validator';
 
 const UserSchema: Schema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
-    lowercase: true,
-    validate: [validator.isEmail, 'Invalid email address']
+    unique: true
   },
   password: {
     type: String,

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
 export class TaskDto {
   private constructor(
     public readonly title: string,
@@ -29,7 +28,7 @@ export class TaskDto {
   //     console.log(user);
   //     return ['Invalid user ID'];
   //   }
-  
+
   //   if (!Array.isArray(assignedUsers)) {
   //     errors.push('Invalid assignedUsers list');
   //   }

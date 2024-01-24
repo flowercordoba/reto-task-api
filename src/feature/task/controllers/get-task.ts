@@ -1,6 +1,5 @@
 import { Response, Request } from 'express';
 
-
 import { PaginationDto, TaskDto } from '../../../domain';
 import { TaskService } from '@service/task.service';
 import { CustomError } from '@root/shared/utils';
@@ -76,7 +75,6 @@ export class TaskController {
     }
   };
 
-
   edit = async (req: Request, res: Response) => {
     try {
       const taskId = req.params.id;
@@ -96,7 +94,6 @@ export class TaskController {
       this.handleError(error, res);
     }
   };
-
 
   asignar = async (req: Request, res: Response) => {
     try {
@@ -131,7 +128,4 @@ export class TaskController {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
-
-
-
 }

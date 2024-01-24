@@ -54,7 +54,6 @@ export class TaskService {
           .skip((page - 1) * limit)
           .limit(limit)
           .populate('user')
-      
       ]);
 
       // Construye el objeto de respuesta con las tareas y la información de paginación.
@@ -97,8 +96,7 @@ export class TaskService {
 
   async getTaskById(id: string) {
     try {
-      const task = await TaskModel.findById(id)
-        .populate('user'); //usuario que creó la tarea
+      const task = await TaskModel.findById(id).populate('user'); //usuario que creó la tarea
       if (!task) {
         throw new CustomError(404, 'no se puedo encontrar la terea por el id');
       }
@@ -121,7 +119,6 @@ export class TaskService {
   }
 
   async deleteTask(id: string) {
-    
     try {
       const deletedTask = await TaskModel.findByIdAndDelete(id);
       if (!deletedTask) {
@@ -133,7 +130,7 @@ export class TaskService {
     }
   }
 
-   /**
+  /**
    * Asigna usuarios a una tarea específica.
    *
    * @param taskId - El ID de la tarea a la que se van a asignar los usuarios.
@@ -141,7 +138,7 @@ export class TaskService {
    * @throws {CustomError} Si la tarea no se encuentra o si hay un error en el servidor.
    * @returns La tarea actualizada.
    */
-   async asignarTask(taskId: string, userIds: string[]) {
+  async asignarTask(taskId: string, userIds: string[]) {
     try {
       const task = await TaskModel.findById(taskId);
       if (!task) {
@@ -149,7 +146,7 @@ export class TaskService {
       }
 
       // Convierte los string a ObjectId
-      const objectIdUserIds = userIds.map(id => new Types.ObjectId(id));
+      const objectIdUserIds = userIds.map((id) => new Types.ObjectId(id));
 
       // Actualiza la lista de usuarios asignados a la tarea.
       task.assignedUsers = objectIdUserIds;
@@ -183,8 +180,4 @@ export class TaskService {
       throw CustomError.internalServer('Internal Server Error');
     }
   }
-
-
-
-
 }

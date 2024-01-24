@@ -48,7 +48,6 @@ export class AuthMiddleware {
       if (user.token && user.token !== token) {
         return res.status(401).json({ error: 'Invalid token - token does not match' });
       }
-    
 
       req.body.user = UserEntity.fromObject(user);
 
@@ -56,10 +55,7 @@ export class AuthMiddleware {
       next();
     } catch (error) {
       console.error(error);
-      res.status(500).json({error:'Interna server Error'});
+      res.status(500).json({ error: 'Interna server Error' });
     }
   }
 }
-
-
-

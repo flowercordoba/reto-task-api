@@ -69,8 +69,6 @@ export class AuthService {
 
   public async getAuthUserByEmail(): Promise<any> {
     console.log('getAuthUserByEmail');
-
-
   }
   public async getUserById(id: string): Promise<any> {
     try {
