@@ -1,0 +1,4 @@
+orbs:
+  codecov: codecov/codecov@3.3.0
+  slack:   circleci/slack@4.12.5
+version: 2.1
