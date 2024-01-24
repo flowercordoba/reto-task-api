@@ -257,7 +257,7 @@ workflows:
 
 
      
-      - hold:
-          type: approval
-          requires:
-            - notify-via-slack
+      # - hold:
+      #     type: approval
+      #     requires:
+      #       - notify-via-slack
